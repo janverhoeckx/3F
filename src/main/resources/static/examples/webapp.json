@@ -1,0 +1,36 @@
+{
+  "name": "Example webapp",
+  "okay": false,
+  "children": [
+    {
+      "name": "Team",
+      "okay": true
+    },
+    {
+      "name": "Security",
+      "okay": true
+    },
+    {
+      "name": "Performance",
+      "okay": true
+    },
+    {
+      "name": "Environment",
+      "okay": false,
+      "children": [
+        {
+          "name": "Test",
+          "okay": true
+        },
+        {
+          "name": "Acceptance",
+          "okay": true
+        },
+        {
+          "name": "Production",
+          "okay": false
+        }
+      ]
+    }
+  ]
+}
