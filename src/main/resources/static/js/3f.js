@@ -7,7 +7,7 @@ var node;
 var svg;
 
 var force = d3.layout.force()
-    .linkDistance(80)
+    .linkDistance(100)
     .charge(-120)
     .gravity(.01)
     .size([width, height])
@@ -75,6 +75,12 @@ function update() {
         .text(function (d) {
             return d.name;
         });
+
+
+    node.select("circle")
+        .attr("r", function (d) {
+            return Math.sqrt(d.size) / 10 || 4.5;
+        });
 }
 
 function tick() {
@@ -102,14 +108,14 @@ function styleClass(d)
 }
 
 function selectNode(d) {
-    if (d3.event.defaultPrevented) return; // ignore drag
+    if (d3.event.defaultPrevented) return;
 
     currentMainNode = d;
     update();
 }
 
 function resetNodes() {
-    if (d3.event.defaultPrevented) return; // ignore drag
+    if (d3.event.defaultPrevented) return;
 
     currentMainNode = rootNode;
     update();
@@ -128,6 +134,6 @@ function flatten(root) {
         nodes.push(node);
     }
 
-    recurse(root, 220000);
+    recurse(root, 200000);
     return nodes;
 }
