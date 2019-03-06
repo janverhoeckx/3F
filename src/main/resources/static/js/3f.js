@@ -1,6 +1,7 @@
 var width = window.innerWidth - 100;
 var height = window.innerHeight - 100;
-var root;
+var currentMainNode;
+var rootNode;
 var link;
 var node;
 var svg;
@@ -12,8 +13,8 @@ var force = d3.layout.force()
     .size([width, height])
     .on("tick", tick);
 
-function show(d3Svg, jsonPath)
-{
+
+function show(d3Svg, jsonPath) {
     svg = d3Svg;
     link = svg.selectAll(".link");
     node = svg.selectAll(".node");
@@ -22,15 +23,17 @@ function show(d3Svg, jsonPath)
     d3.json(jsonPath, function (error, json) {
         if (error) throw error;
 
-        root = json;
+        rootNode = json;
+        currentMainNode = rootNode;
+
         update();
     });
 }
 
 function update() {
 
-    var nodes = flatten(root),
-        links = d3.layout.tree().links(nodes);
+    var nodes = flatten(currentMainNode);
+    var links = d3.layout.tree().links(nodes);
 
     // Restart the force layout.
     force
@@ -57,8 +60,10 @@ function update() {
 
     var nodeEnter = node.enter().append("g")
         .attr("class", "node")
-        .on("click", click)
+        .on("click", selectNode)
+        .on("dblclick", resetNodes)
         .call(force.drag);
+
 
     nodeEnter.append("circle")
         .attr("r", function (d) {
@@ -72,7 +77,12 @@ function update() {
         });
 
     node.select("circle")
-        .style("fill", color);
+        .style("fill", color)
+        .attr("r", function (d) {
+            return Math.sqrt(d.size) / 10 || 4.5;
+        });
+
+
 }
 
 function tick() {
@@ -101,20 +111,21 @@ function color(d) {
     return d.okay ? "#88EE88" : "#EE8888";
 }
 
-// Toggle children on click.
-function click(d) {
+function selectNode(d) {
     if (d3.event.defaultPrevented) return; // ignore drag
-    if (d.children) {
-        d._children = d.children;
-        d.children = null;
-    } else {
-        d.children = d._children;
-        d._children = null;
-    }
+
+    currentMainNode = d;
     update();
 }
 
-// Returns a list of all nodes under the root.
+function resetNodes() {
+    if (d3.event.defaultPrevented) return; // ignore drag
+
+    currentMainNode = rootNode;
+    update();
+}
+
+// Returns a list of all nodes under the currentMainNode.
 function flatten(root) {
     var nodes = [], i = 0;
 
