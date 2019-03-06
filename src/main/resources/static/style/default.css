@@ -11,6 +11,14 @@ svg {
     cursor: pointer;
 }
 
+.okay circle {
+    fill: #88EE88;
+}
+
+.failed circle {
+    fill: #EE8888;
+}
+
 .node text {
     font: 10px Alfredo sans-serif;
     pointer-events: none;

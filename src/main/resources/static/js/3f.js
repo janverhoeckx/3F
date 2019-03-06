@@ -59,7 +59,7 @@ function update() {
     node.exit().remove();
 
     var nodeEnter = node.enter().append("g")
-        .attr("class", "node")
+        .attr("class", styleClass)
         .on("click", selectNode)
         .on("dblclick", resetNodes)
         .call(force.drag);
@@ -75,14 +75,6 @@ function update() {
         .text(function (d) {
             return d.name;
         });
-
-    node.select("circle")
-        .style("fill", color)
-        .attr("r", function (d) {
-            return Math.sqrt(d.size) / 10 || 4.5;
-        });
-
-
 }
 
 function tick() {
@@ -104,11 +96,9 @@ function tick() {
     });
 }
 
-function color(d) {
-    // return d._children ? "#88ff88" // collapsed package
-    //     : d.children ? "#88ff88" // expanded package
-    //         : "#00ff00"; // leaf node
-    return d.okay ? "#88EE88" : "#EE8888";
+function styleClass(d)
+{
+    return d.okay ? "node okay" : "node failed"
 }
 
 function selectNode(d) {
@@ -125,7 +115,6 @@ function resetNodes() {
     update();
 }
 
-// Returns a list of all nodes under the currentMainNode.
 function flatten(root) {
     var nodes = [], i = 0;
 
