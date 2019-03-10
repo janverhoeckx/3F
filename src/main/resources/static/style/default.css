@@ -5,28 +5,74 @@ body {
 svg {
     background: black;
 
+
 }
 
 .node circle {
     cursor: pointer;
+    stroke-width: 1.5px;
 }
 
 .okay circle {
-    fill: #88EE88;
+    fill: #115511;
+    stroke: #77FF77;
 }
 
 .failed circle {
-    fill: #EE8888;
+    fill: #551111;
+    stroke: #FF7777;
 }
 
 .node text {
-    font: 10px Alfredo sans-serif;
+    stroke-width: 1px;
+    stroke: darkgray;
     pointer-events: none;
     text-anchor: middle;
 }
 
+.node text.level1 {
+     font: 16px sans-serif;
+ }
+
+.node text.description.level1 {
+    font: 12px sans-serif;
+}
+
+.node text.level2 {
+    font: 12px sans-serif;
+}
+
+.node text.description {
+    font: 8px sans-serif;
+}
+
+.node text.level3 {
+    font: 10px sans-serif;
+}
+
+.node text.level4 {
+    font: 8px sans-serif;
+}
+
+
+.node text.level5 {
+    font: 8px sans-serif;
+}
+
+.node text.description.level4, text.description.level5 {
+   display: none;
+}
+
+
+
+
+
+.failed text {
+    stroke: #FF7777;
+}
+
 line.link {
     fill: none;
-    stroke: #9ecae1;
-    stroke-width: 1.5px;
+    stroke: darkgray;
+    stroke-width: 2px;
 }

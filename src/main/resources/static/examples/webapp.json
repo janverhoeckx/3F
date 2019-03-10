@@ -1,50 +1,66 @@
 {
   "name": "Example webapp",
+  "description": "Architecture okay?",
   "okay": false,
-  "url": "http://localhost:8082/health",
-  "expectedResultExpression": "{\"status\":\"UP\"}",
   "children": [
     {
-      "name": "Team",
+      "name": "Functionality",
       "okay": true,
-      "url": "http://localhost:8082/health",
-      "expectedResultExpression": "{\"status\":\"UP\"}"
+      "children": [
+        {
+          "name": "Security",
+          "okay": true
+        },
+        {
+          "name": "Portability",
+          "okay": true
+        },
+        {
+          "name": "Capability",
+          "okay": true
+        }
+      ]
     },
     {
-      "name": "Security",
-      "okay": true,
-      "url": "http://localhost:8082/health",
-      "expectedResultExpression": "{\"status\":\"UP\"}"
+      "name": "Usability (UX)",
+      "okay": true
+    },
+    {
+      "name": "Reliability ",
+      "okay": true
     },
     {
       "name": "Performance",
-      "okay": true,
-      "url": "http://localhost:8082/health",
-      "expectedResultExpression": "{\"status\":\"UP\"}"
+      "okay": false
     },
     {
-      "name": "Environment",
-      "okay": false,
-      "url": "http://localhost:8082/health",
-      "expectedResultExpression": "{\"status\":\"DOWN\"}",
+      "name": "Supportability ",
+      "okay": true,
       "children": [
         {
-          "name": "Test",
+          "name": "Maintainability",
           "okay": true,
-          "url": "http://localhost:8082/health",
-          "expectedResultExpression": "{\"status\":\"UP\"}"
-        },
-        {
-          "name": "Acceptance",
-          "okay": true,
-          "url": "http://localhost:8082/health",
-          "expectedResultExpression": "{\"status\":\"UP\"}"
-        },
-        {
-          "name": "Production",
-          "okay": false,
-          "url": "http://localhost:8082/health",
-          "expectedResultExpression": "{\"status\":\"UP\"}"
+          "children": [
+            {
+              "name": "Technical depth",
+              "okay": true,
+              "children": [
+                {
+                  "name": "Service 1",
+                  "okay": true
+                },
+                {
+                  "name": "Service 2",
+                  "okay": true
+                },
+                {
+                  "name": "Service 3",
+                  "description": "The 3d service",
+                  "okay": true
+                }
+              ]
+            }
+          ]
         }
       ]
     }
