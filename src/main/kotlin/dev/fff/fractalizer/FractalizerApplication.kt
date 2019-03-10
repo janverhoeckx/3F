@@ -16,6 +16,8 @@ fun main(args: Array<String>) {
     runApplication<FractalizerApplication>(*args)
 }
 
+
+//FIXME  proxy fitness function to seperate package + renames?
 @RestController
 class Proxy {
 

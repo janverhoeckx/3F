@@ -34,8 +34,9 @@
       "okay": false
     },
     {
-      "name": "Supportability ",
+      "name": "Supportability",
       "okay": true,
+      "description": "Supportability okay?",
       "children": [
         {
           "name": "Maintainability",

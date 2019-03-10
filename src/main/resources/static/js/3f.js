@@ -42,54 +42,45 @@ function update() {
         .links(links)
         .start();
 
-    // Update links.
     link = link.data(links, function (d) {
         return d.target.id;
     });
-
-    link.exit().remove();
-
     link.enter().insert("line", ".node")
         .attr("class", "link");
+    link.exit().remove();
 
-    // Update nodes.
+
     node = node.data(nodes, function (d) {
         return d.id;
     });
-
-    node.exit().remove();
 
     var nodeEnter = node.enter().append("g")
         .attr("class", styleClass)
         .on("click", selectNode)
         .on("dblclick", resetNodes)
         .call(force.drag);
-
-    nodeEnter.append("circle")
-        .attr("r", function (d) {
-            return Math.sqrt(500000 / d.level) / 10 || 4.5;
-        });
-
-    //FIXME all styles are not updated correctly (e.g. when clicked)
-    nodeEnter.append("text")
-        .attr("dy", ".35em")
-        .attr("class", nameStyleClass)
-        .text(function (d) {
-            return d.name;
-        });
-    nodeEnter.append("text")
-        .attr("dy", ".35em")
-        .attr("y", "20px")
-        .attr("class", descriptionStyleClass)
-        .text(function (d) {
-            return d.description;
-        });
-
+    nodeEnter.append("circle");
+    nodeEnter.append("text");
+    nodeEnter.append("text");
 
     node.select("circle")
         .attr("r", function (d) {
             return Math.sqrt(500000 / d.level) / 10 || 4.5;
-        });
+        }).attr("class", styleClass);
+    node.select("g text:first-of-type")
+        .attr("dy", ".35em")
+        .attr("class", nameStyleClass).text(function (d) {
+        return d.name;
+    });
+    node.select("g text:last-of-type")
+        .attr("dy", ".35em")
+        .attr("y", "20px")
+        .attr("class", descriptionStyleClass).text(function (d) {
+        return d.description;
+    });
+
+    node.exit().remove();
+
 }
 
 function tick() {
