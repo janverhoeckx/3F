@@ -1,34 +1,66 @@
 {
   "name": "Example webapp",
+  "description": "Architecture okay?",
   "okay": false,
   "children": [
     {
-      "name": "Team",
+      "name": "Functionality",
+      "okay": true,
+      "children": [
+        {
+          "name": "Security",
+          "okay": true
+        },
+        {
+          "name": "Portability",
+          "okay": true
+        },
+        {
+          "name": "Capability",
+          "okay": true
+        }
+      ]
+    },
+    {
+      "name": "Usability (UX)",
       "okay": true
     },
     {
-      "name": "Security",
+      "name": "Reliability ",
       "okay": true
     },
     {
       "name": "Performance",
-      "okay": true
+      "okay": false
     },
     {
-      "name": "Environment",
-      "okay": false,
+      "name": "Supportability ",
+      "okay": true,
       "children": [
         {
-          "name": "Test",
-          "okay": true
-        },
-        {
-          "name": "Acceptance",
-          "okay": true
-        },
-        {
-          "name": "Production",
-          "okay": false
+          "name": "Maintainability",
+          "okay": true,
+          "children": [
+            {
+              "name": "Technical depth",
+              "okay": true,
+              "children": [
+                {
+                  "name": "Service 1",
+                  "okay": true
+                },
+                {
+                  "name": "Service 2",
+                  "okay": true
+                },
+                {
+                  "name": "Service 3",
+                  "description": "The 3d service",
+                  "okay": true
+                }
+              ]
+            }
+          ]
         }
       ]
     }

@@ -6,10 +6,11 @@ var link;
 var node;
 var svg;
 
+//FIXME linkDistance depending on level
 var force = d3.layout.force()
-    .linkDistance(100)
-    .charge(-120)
-    .gravity(.01)
+    .linkDistance(130)
+    .charge(-450)
+    .gravity(.06)
     .size([width, height])
     .on("tick", tick);
 
@@ -64,22 +65,30 @@ function update() {
         .on("dblclick", resetNodes)
         .call(force.drag);
 
-
     nodeEnter.append("circle")
         .attr("r", function (d) {
-            return Math.sqrt(d.size) / 10 || 4.5;
+            return Math.sqrt(500000 / d.level) / 10 || 4.5;
         });
 
+    //FIXME all styles are not updated correctly (e.g. when clicked)
     nodeEnter.append("text")
         .attr("dy", ".35em")
+        .attr("class", nameStyleClass)
         .text(function (d) {
             return d.name;
+        });
+    nodeEnter.append("text")
+        .attr("dy", ".35em")
+        .attr("y", "20px")
+        .attr("class", descriptionStyleClass)
+        .text(function (d) {
+            return d.description;
         });
 
 
     node.select("circle")
         .attr("r", function (d) {
-            return Math.sqrt(d.size) / 10 || 4.5;
+            return Math.sqrt(500000 / d.level) / 10 || 4.5;
         });
 }
 
@@ -102,9 +111,16 @@ function tick() {
     });
 }
 
-function styleClass(d)
-{
+function styleClass(d) {
     return d.okay ? "node okay" : "node failed"
+}
+
+function nameStyleClass(d) {
+    return "name level" + d.level;
+}
+
+function descriptionStyleClass(d) {
+    return "description level" + d.level;
 }
 
 function selectNode(d) {
@@ -124,16 +140,20 @@ function resetNodes() {
 function flatten(root) {
     var nodes = [], i = 0;
 
-    function recurse(node, size) {
+    function recurse(node, level) {
+
+
         if (node.children) node.children.forEach(function (theNode) {
-            recurse(theNode, size / 2);
+            recurse(theNode, level + 1);
         });
 
         if (!node.id) node.id = ++i;
-        node.size = size;
+
+        node.level = level;
         nodes.push(node);
     }
 
-    recurse(root, 200000);
+
+    recurse(root, 1);
     return nodes;
 }
