@@ -70,11 +70,6 @@ function update() {
             return Math.sqrt(d.size) / 10 || 4.5;
         });
 
-    nodeEnter.append("text")
-        .attr("dy", ".35em")
-        .text(function (d) {
-            return d.name;
-        });
 }
 
 function tick() {
@@ -96,9 +91,8 @@ function tick() {
     });
 }
 
-function styleClass(d)
-{
-    return d.okay ? "node okay" : "node failed"
+function styleClass(d) {
+    return d ? "node okay" : "node failed"
 }
 
 function selectNode(d) {

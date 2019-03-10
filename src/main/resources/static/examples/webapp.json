@@ -1,34 +1,50 @@
 {
   "name": "Example webapp",
   "okay": false,
+  "url": "http://localhost:8082/health",
+  "expectedResultExpression": "{\"status\":\"UP\"}",
   "children": [
     {
       "name": "Team",
-      "okay": true
+      "okay": true,
+      "url": "http://localhost:8082/health",
+      "expectedResultExpression": "{\"status\":\"UP\"}"
     },
     {
       "name": "Security",
-      "okay": true
+      "okay": true,
+      "url": "http://localhost:8082/health",
+      "expectedResultExpression": "{\"status\":\"UP\"}"
     },
     {
       "name": "Performance",
-      "okay": true
+      "okay": true,
+      "url": "http://localhost:8082/health",
+      "expectedResultExpression": "{\"status\":\"UP\"}"
     },
     {
       "name": "Environment",
       "okay": false,
+      "url": "http://localhost:8082/health",
+      "expectedResultExpression": "{\"status\":\"DOWN\"}",
       "children": [
         {
           "name": "Test",
-          "okay": true
+          "okay": true,
+          "url": "http://localhost:8082/health",
+          "expectedResultExpression": "{\"status\":\"UP\"}"
         },
         {
           "name": "Acceptance",
-          "okay": true
+          "okay": true,
+          "url": "http://localhost:8082/health",
+          "expectedResultExpression": "{\"status\":\"UP\"}"
         },
         {
           "name": "Production",
-          "okay": false
+          "okay": false,
+          "url": "http://localhost:8082/health",
+          "expectedResultExpression": "{\"status\":\"UP\"}"
         }
       ]
     }
