@@ -26,8 +26,8 @@ HELP.md
 /build/
 
 ### Javascript / NPM ###
-/src/main/frontend/node-modules
+/src/main/frontend/node-modules/
 
 ### Generated files ###
-/src/main/resources/static
-/src/main/frontend/dist
+/src/main/resources/static/
+/src/main/frontend/dist/
