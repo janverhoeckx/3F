@@ -19,7 +19,6 @@ npm run start
 ```
 
 To make a build and install it in the Spring boot static resources folder, run:
-Screenshot from 2019-03-17 21-03-56.
 ```bash
 npm run build
 ```
