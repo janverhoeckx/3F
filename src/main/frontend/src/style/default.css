@@ -1,9 +1,9 @@
 body {
-    background: white;
+    background: #141414;
 }
 
 svg {
-    background: white;
+    background: #141414;
 }
 
 html, body, #graph {
@@ -28,35 +28,36 @@ html, body, #graph {
     fill: white;
     pointer-events: none;
     text-anchor: middle;
+    font-family: Open Sans,Helvetica,Arial,sans-serif;
 }
 
 .node text.level1 {
-    font: 16px sans-serif;
+    font-size: 16px;
 }
 
 .node text.description.level1 {
-    font: 12px sans-serif;
+    font-size: 12px;
 }
 
 .node text.level2 {
-    font: 12px sans-serif;
+    font-size: 12px;
 }
 
 .node text.description {
-    font: 8px sans-serif;
+    font-size: 8px;
 }
 
 .node text.level3 {
-    font: 10px sans-serif;
+    font-size: 10px;
 }
 
 .node text.level4 {
-    font: 8px sans-serif;
+    font-size: 8px;
 }
 
 
 .node text.level5 {
-    font: 8px sans-serif;
+    font-size: 8px;
 }
 
 .node text.description.level4, text.description.level5 {
