@@ -24,3 +24,10 @@ HELP.md
 /nbdist/
 /.nb-gradle/
 /build/
+
+### Javascript / NPM ###
+/src/main/frontend/node-modules/
+
+### Generated files ###
+/src/main/resources/static/
+/src/main/frontend/dist/

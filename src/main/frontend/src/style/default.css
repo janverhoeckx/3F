@@ -1,11 +1,14 @@
 body {
-    background: black;
+    background: white;
 }
 
 svg {
-    background: black;
+    background: white;
+}
 
-
+html, body, #graph {
+    width: 900px;
+    height: 500px;
 }
 
 .node circle {
@@ -14,25 +17,22 @@ svg {
 }
 
 .okay circle {
-    fill: #115511;
-    stroke: #77FF77;
+    fill: #4BB543;
 }
 
 .failed circle {
-    fill: #551111;
-    stroke: #FF7777;
+    fill: #ff0033;
 }
 
 .node text {
-    stroke-width: 1px;
-    stroke: darkgray;
+    fill: white;
     pointer-events: none;
     text-anchor: middle;
 }
 
 .node text.level1 {
-     font: 16px sans-serif;
- }
+    font: 16px sans-serif;
+}
 
 .node text.description.level1 {
     font: 12px sans-serif;
@@ -60,15 +60,11 @@ svg {
 }
 
 .node text.description.level4, text.description.level5 {
-   display: none;
+    display: none;
 }
 
-
-
-
-
 .failed text {
-    stroke: #FF7777;
+    color: white;
 }
 
 line.link {
