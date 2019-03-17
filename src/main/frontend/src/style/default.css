@@ -1,0 +1,74 @@
+body {
+    background: white;
+}
+
+svg {
+    background: white;
+}
+
+html, body, #graph {
+    width: 900px;
+    height: 500px;
+}
+
+.node circle {
+    cursor: pointer;
+    stroke-width: 1.5px;
+}
+
+.okay circle {
+    fill: #4BB543;
+}
+
+.failed circle {
+    fill: #ff0033;
+}
+
+.node text {
+    fill: white;
+    pointer-events: none;
+    text-anchor: middle;
+}
+
+.node text.level1 {
+    font: 16px sans-serif;
+}
+
+.node text.description.level1 {
+    font: 12px sans-serif;
+}
+
+.node text.level2 {
+    font: 12px sans-serif;
+}
+
+.node text.description {
+    font: 8px sans-serif;
+}
+
+.node text.level3 {
+    font: 10px sans-serif;
+}
+
+.node text.level4 {
+    font: 8px sans-serif;
+}
+
+
+.node text.level5 {
+    font: 8px sans-serif;
+}
+
+.node text.description.level4, text.description.level5 {
+    display: none;
+}
+
+.failed text {
+    color: white;
+}
+
+line.link {
+    fill: none;
+    stroke: darkgray;
+    stroke-width: 2px;
+}
