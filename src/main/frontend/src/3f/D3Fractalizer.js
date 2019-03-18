@@ -3,22 +3,15 @@ import * as d3 from 'd3'
 export class D3Fractalizer {
 
     constructor(data) {
-        let width = window.innerWidth - 50;
-        let height = window.innerHeight - 50;
-        let svg = d3.select("svg")
-            .attr("width", width)
-            .attr("height", height);
-
-        this.force = this.createForce(width, height);
-        this.links = svg.selectAll(".link");
-        this.nodes = svg.selectAll(".node");
-        this.originalNodes = undefined;
+        this.width = window.innerWidth - 50;
+        this.height = window.innerHeight - 50;
+        this.svg = d3.select("svg")
+            .attr("width", this.width)
+            .attr("height", this.height);
 
 
         console.debug("Using data: ", data);
-        this.originalNodes = data;
-        this.update(this.originalNodes);
-
+        this.updateWithData(data);
         console.debug("fractializer initialized");
     }
 
@@ -50,23 +43,23 @@ export class D3Fractalizer {
         });
     }
 
-    readJSONAndUpdate(jsonPath, callback) {
-        d3.json(jsonPath, (error, json) => {
-            if (error) throw error;
-
-            callback(json);
-        });
+    updateWithData(data){
+        this.svg.selectAll(".link").remove();
+        this.svg.selectAll(".node").remove();
+        this.force = this.createForce(this.width, this.height);
+        this.links = this.svg.selectAll(".link");
+        this.nodes = this.svg.selectAll(".node");
+        this.originalNodes = data;
+        this.update(this.originalNodes);
     }
 
     update(rootNode) {
-
         let nodeModel = this.flatten(rootNode);
         let linkModel = d3.layout.tree().links(nodeModel);
 
         this.updateForce(linkModel, nodeModel);
         this.updateLinks(linkModel);
         this.updateNodes(nodeModel);
-
     }
 
     updateForce(linkModel, nodeModel) {
