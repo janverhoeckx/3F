@@ -1,0 +1,21 @@
+{
+  "name": "Example webapp",
+  "description": "Architecture okay?",
+  "okay": false,
+  "children": [
+    {
+      "name": "Functionality",
+      "okay": true,
+      "children": [
+        {
+          "name": "Security",
+          "okay": true
+        }
+      ]
+    },
+    {
+      "name": "Usability (UX)",
+      "okay": true
+    }
+  ]
+}
