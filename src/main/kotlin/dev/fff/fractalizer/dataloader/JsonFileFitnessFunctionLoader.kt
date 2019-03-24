@@ -8,17 +8,19 @@ import dev.fff.fractalizer.model.FitnessFunction
 import org.slf4j.LoggerFactory
 
 @Service
-class JsonFitnessFunctionLoader(
+class JsonFileFitnessFunctionLoader(
         @Value("\${jsonFile}")
         val jsonDataPath: String
 ) : FitnessFunctionDataLoader {
 
-    private val LOGGER = LoggerFactory.getLogger(javaClass)
+    companion object {
+        private val LOGGER = LoggerFactory.getLogger(javaClass::class.java)
+    }
 
     init {
         LOGGER.info("Using json file: $jsonDataPath")
     }
 
-    override fun loadFitnessFunctions(): FitnessFunction = jacksonObjectMapper().readValue(JsonFitnessFunctionLoader::class.java.getResource(jsonDataPath).readText())
+    override fun loadFitnessFunctions(): FitnessFunction = jacksonObjectMapper().readValue(JsonFileFitnessFunctionLoader::class.java.getResource(jsonDataPath).readText())
 
 }

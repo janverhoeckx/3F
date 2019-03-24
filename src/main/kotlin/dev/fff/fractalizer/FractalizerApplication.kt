@@ -14,7 +14,7 @@ fun main(args: Array<String>) {
 }
 
 @RestController
-class Proxy(val fitnessFunctionDataLoader: FitnessFunctionDataLoader) {
+class FitnessFunctionController(val fitnessFunctionDataLoader: FitnessFunctionDataLoader) {
 
     @GetMapping("/fitnessfunction")
     fun getFitnessFunctionResult() = fitnessFunctionDataLoader.loadFitnessFunctions()

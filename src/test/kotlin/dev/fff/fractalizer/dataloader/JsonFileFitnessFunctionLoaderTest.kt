@@ -4,11 +4,11 @@ import org.junit.Test
 
 import org.junit.Assert.*
 
-class JsonFitnessFunctionLoaderTest {
+class JsonFileFitnessFunctionLoaderTest {
 
     @Test
     fun loadFitnessFunctions() {
-        val result = JsonFitnessFunctionLoader("/test.json").loadFitnessFunctions()
+        val result = JsonFileFitnessFunctionLoader("/test.json").loadFitnessFunctions()
 
         assertEquals("Example webapp", result.name)
         assertEquals("Architecture okay?", result.description)
