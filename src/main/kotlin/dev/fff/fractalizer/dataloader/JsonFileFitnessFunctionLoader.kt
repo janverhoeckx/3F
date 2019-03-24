@@ -14,7 +14,7 @@ class JsonFileFitnessFunctionLoader(
 ) : FitnessFunctionDataLoader {
 
     companion object {
-        private val LOGGER = LoggerFactory.getLogger(javaClass::class.java)
+        private val LOGGER = LoggerFactory.getLogger(JsonFileFitnessFunctionLoader::class.java)
     }
 
     init {
