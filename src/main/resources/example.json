@@ -2,61 +2,75 @@
   "name": "Example webapp",
   "description": "Architecture okay?",
   "okay": false,
+  "type": "HttpCheck",
   "children": [
     {
       "name": "Functionality",
       "okay": true,
+      "type": "HttpCheck",
       "children": [
         {
           "name": "Security",
-          "okay": true
+          "okay": true,
+          "type": "HttpCheck"
         },
         {
           "name": "Portability",
-          "okay": true
+          "okay": true,
+          "type": "HttpCheck"
         },
         {
           "name": "Capability",
-          "okay": true
+          "okay": true,
+          "type": "HttpCheck"
         }
       ]
     },
     {
       "name": "Usability (UX)",
-      "okay": true
+      "okay": true,
+      "type": "HttpCheck"
     },
     {
       "name": "Reliability ",
-      "okay": true
+      "okay": true,
+      "type": "HttpCheck"
     },
     {
       "name": "Performance",
-      "okay": false
+      "okay": false,
+      "type": "HttpCheck"
     },
     {
       "name": "Supportability ",
       "okay": true,
+      "type": "HttpCheck",
       "children": [
         {
           "name": "Maintainability",
           "okay": true,
+          "type": "HttpCheck",
           "children": [
             {
               "name": "Technical depth",
               "okay": true,
+              "type": "HttpCheck",
               "children": [
                 {
                   "name": "Service 1",
-                  "okay": true
+                  "okay": true,
+                  "type": "HttpCheck"
                 },
                 {
                   "name": "Service 2",
-                  "okay": true
+                  "okay": true,
+                  "type": "HttpCheck"
                 },
                 {
                   "name": "Service 3",
                   "description": "The 3d service",
-                  "okay": true
+                  "okay": true,
+                  "type": "HttpCheck"
                 }
               ]
             }

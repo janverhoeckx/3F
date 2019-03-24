@@ -14,9 +14,9 @@ fun main(args: Array<String>) {
 }
 
 @RestController
-class FitnessFunctionController(val fitnessFunctionDataLoader: FitnessFunctionDataLoader) {
+class FitnessFunctionController(val fitnessFunctionDataLoader: FitnessFunctionDataLoader, val fitnessFunctionService: FitnessFunctionService) {
 
     @GetMapping("/fitnessfunction")
-    fun getFitnessFunctionResult() = fitnessFunctionDataLoader.loadFitnessFunctions()
+    fun getFitnessFunctionResult() = fitnessFunctionService.evaluateFitnessFunction(fitnessFunctionDataLoader.loadFitnessFunctions())
 
 }

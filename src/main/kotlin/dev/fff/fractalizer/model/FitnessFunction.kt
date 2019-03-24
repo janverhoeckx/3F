@@ -6,7 +6,8 @@ class FitnessFunction(
         val name: String,
         @JsonInclude(JsonInclude.Include.NON_NULL)
         val description: String?,
-        val okay: Boolean,
+        var okay: Boolean,
         @JsonInclude(JsonInclude.Include.NON_NULL)
-        val children: List<FitnessFunction>?
+        var children: List<FitnessFunction>?,
+        val type: String
 )

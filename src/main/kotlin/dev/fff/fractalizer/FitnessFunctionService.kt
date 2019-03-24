@@ -1,0 +1,20 @@
+package dev.fff.fractalizer
+
+import dev.fff.fractalizer.handler.FitnessFunctionHandler
+import dev.fff.fractalizer.model.FitnessFunction
+import org.springframework.stereotype.Service
+
+@Service
+class FitnessFunctionService(private val fitnessFunctionHandlers: List<FitnessFunctionHandler>) {
+
+    private val handlerMap: Map<String, FitnessFunctionHandler> by lazy {
+        fitnessFunctionHandlers.map { it.getType() to it }.toMap()
+    }
+
+    fun evaluateFitnessFunction(fitnessFunction: FitnessFunction): FitnessFunction {
+        fitnessFunction.children = fitnessFunction.children?.map { evaluateFitnessFunction(it) }
+        fitnessFunction.okay = handlerMap.getValue(fitnessFunction.type).checkFitnessFunction(fitnessFunction)
+        return fitnessFunction
+    }
+
+}
