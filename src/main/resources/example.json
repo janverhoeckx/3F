@@ -1,0 +1,68 @@
+{
+  "name": "Example webapp",
+  "description": "Architecture okay?",
+  "okay": false,
+  "children": [
+    {
+      "name": "Functionality",
+      "okay": true,
+      "children": [
+        {
+          "name": "Security",
+          "okay": true
+        },
+        {
+          "name": "Portability",
+          "okay": true
+        },
+        {
+          "name": "Capability",
+          "okay": true
+        }
+      ]
+    },
+    {
+      "name": "Usability (UX)",
+      "okay": true
+    },
+    {
+      "name": "Reliability ",
+      "okay": true
+    },
+    {
+      "name": "Performance",
+      "okay": false
+    },
+    {
+      "name": "Supportability ",
+      "okay": true,
+      "children": [
+        {
+          "name": "Maintainability",
+          "okay": true,
+          "children": [
+            {
+              "name": "Technical depth",
+              "okay": true,
+              "children": [
+                {
+                  "name": "Service 1",
+                  "okay": true
+                },
+                {
+                  "name": "Service 2",
+                  "okay": true
+                },
+                {
+                  "name": "Service 3",
+                  "description": "The 3d service",
+                  "okay": true
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
