@@ -1,10 +1,10 @@
 package dev.fff.fractalizer
 
-import dev.fff.fractalizer.dataloader.FitnessFunctionDataLoader
+import com.squareup.okhttp.OkHttpClient
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.context.annotation.Bean
+import org.springframework.context.annotation.Configuration
 
 @SpringBootApplication
 class FractalizerApplication
@@ -13,10 +13,12 @@ fun main(args: Array<String>) {
     runApplication<FractalizerApplication>(*args)
 }
 
-@RestController
-class FitnessFunctionController(val fitnessFunctionDataLoader: FitnessFunctionDataLoader, val fitnessFunctionService: FitnessFunctionService) {
+@Configuration
+class Configuration {
 
-    @GetMapping("/fitnessfunction")
-    fun getFitnessFunctionResult() = fitnessFunctionService.evaluateFitnessFunction(fitnessFunctionDataLoader.loadFitnessFunctions())
+    @Bean
+    fun getOkHttpClient(): OkHttpClient {
+        return OkHttpClient()
+    }
 
 }

@@ -1,25 +1,25 @@
 {
   "name": "Example webapp",
   "description": "Architecture okay?",
-  "okay": false,
-  "type": "test",
+  "okay": true,
   "children": [
     {
       "name": "Functionality",
       "okay": true,
-      "type": "test",
       "children": [
         {
           "name": "Security",
-          "okay": true,
-          "type": "test"
+          "okay": false,
+          "type": "HttpCheck",
+          "properties": {
+            "url": "http://localhost:1234"
+          }
         }
       ]
     },
     {
       "name": "Usability (UX)",
       "okay": true,
-      "type": "test",
       "properties":  {
         "testProperty": "testValue",
         "testProperty2": "testValue2"

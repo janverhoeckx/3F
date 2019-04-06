@@ -22,15 +22,15 @@ class FitnessFunctionServiceTest {
 
     @Test
     fun evaluateFitnessFunction() {
-        val fitnessFunctionChild1 = FitnessFunction("test child 1", "test description child 1", false, null, "test")
-        val fitnessFunctionChild1OfChild2 = FitnessFunction("test child 1 of child 2", "test description child 1 of child 2", false, null, "test")
+        val fitnessFunctionChild1 = FitnessFunction("test child 1", "test description child 1", false, null, "test", null)
+        val fitnessFunctionChild1OfChild2 = FitnessFunction("test child 1 of child 2", "test description child 1 of child 2", false, null, "test", null)
         val fitnessFunctionChild2 = FitnessFunction("test child 2", "test description child 2", false, listOf(
                 fitnessFunctionChild1OfChild2
-        ), "test")
+        ), "test", null)
         val fitnessFunction = FitnessFunction("test parent", "test description parent", false, listOf(
                 fitnessFunctionChild1,
                 fitnessFunctionChild2
-        ), "test")
+        ), "test", null)
 
         `when`(mockFitnessFunctionHandler.checkFitnessFunction(fitnessFunction)).thenReturn(false)
         `when`(mockFitnessFunctionHandler.checkFitnessFunction(fitnessFunctionChild1)).thenReturn(false)
@@ -47,7 +47,7 @@ class FitnessFunctionServiceTest {
 
     @Test(expected = NoSuchElementException::class)
     fun evaluateFitnessFunctionUnknownTypeThrowsException() {
-        val fitnessFunction = FitnessFunction("test parent", "test description parent", false, null, "unknowntype")
+        val fitnessFunction = FitnessFunction("test parent", "test description parent", false, null, "unknowntype", null)
 
         systemUnderTest.evaluateFitnessFunction(fitnessFunction)
     }

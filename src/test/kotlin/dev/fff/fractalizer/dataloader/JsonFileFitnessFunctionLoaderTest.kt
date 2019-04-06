@@ -24,5 +24,7 @@ class JsonFileFitnessFunctionLoaderTest {
         assertNull(result.children!![1].description)
         assertNull(result.children!![1].children)
         assertTrue(result.children!![1].okay)
+        assertEquals("testValue", result.children!![1].properties!!["testProperty"])
+        assertEquals("testValue2", result.children!![1].properties!!["testProperty2"])
     }
 }

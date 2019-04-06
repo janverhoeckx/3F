@@ -9,5 +9,6 @@ class FitnessFunction(
         var okay: Boolean,
         @JsonInclude(JsonInclude.Include.NON_NULL)
         var children: List<FitnessFunction>?,
-        val type: String
+        val type: String?,
+        val properties: Map<String, String>?
 )
