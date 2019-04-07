@@ -1,15 +1,9 @@
 import {D3Fractalizer} from './3f/D3Fractalizer';
 import './style/default.css';
-import data from './examples/webapp.json';
+import {HttpClient} from "./http/HttpClient";
 
-let fractalizer = new D3Fractalizer(data);
+let client = new HttpClient();
 
-setTimeout(() => {
-    data.children[1].okay = false;
-    data.children[0].okay = false;
-    data.children[0].children[0].okay = false;
-
-    console.log(data);
-
-    fractalizer.updateWithData(data);
-}, 5000);
+client.get('/fitnessfunction').then((data) => {
+    new D3Fractalizer(JSON.parse(data));
+});

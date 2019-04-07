@@ -2,75 +2,83 @@
   "name": "Example webapp",
   "description": "Architecture okay?",
   "okay": false,
-  "type": "HttpCheck",
   "children": [
     {
       "name": "Functionality",
       "okay": true,
-      "type": "HttpCheck",
       "children": [
         {
           "name": "Security",
-          "okay": true,
-          "type": "HttpCheck"
+          "okay": true
         },
         {
           "name": "Portability",
-          "okay": true,
-          "type": "HttpCheck"
+          "okay": true
         },
         {
           "name": "Capability",
+          "okay": true
+        }
+      ]
+    },
+    {
+      "name": "Systems up",
+      "okay": true,
+      "children": [
+        {
+          "name": "Fractalizer",
           "okay": true,
-          "type": "HttpCheck"
+          "type": "HttpCheck",
+          "properties": {
+            "url": "http://localhost:8080/actuator/health"
+          }
+        },
+        {
+          "name": "Fake App",
+          "okay": true,
+          "type": "HttpCheck",
+          "properties": {
+            "url": "http://localhost:8085"
+          }
         }
       ]
     },
     {
       "name": "Usability (UX)",
-      "okay": true,
-      "type": "HttpCheck"
+      "okay": true
     },
     {
       "name": "Reliability ",
-      "okay": true,
-      "type": "HttpCheck"
+      "okay": true
     },
     {
       "name": "Performance",
-      "okay": false,
-      "type": "HttpCheck"
+      "okay": false
     },
     {
       "name": "Supportability ",
       "okay": true,
-      "type": "HttpCheck",
       "children": [
         {
           "name": "Maintainability",
           "okay": true,
-          "type": "HttpCheck",
           "children": [
             {
               "name": "Technical depth",
               "okay": true,
-              "type": "HttpCheck",
               "children": [
                 {
                   "name": "Service 1",
-                  "okay": true,
-                  "type": "HttpCheck"
+                  "okay": true
                 },
                 {
                   "name": "Service 2",
-                  "okay": true,
-                  "type": "HttpCheck"
+                  "okay": true
                 },
                 {
                   "name": "Service 3",
                   "description": "The 3d service",
-                  "okay": true,
-                  "type": "HttpCheck"
+                  "okay": true
                 }
               ]
             }

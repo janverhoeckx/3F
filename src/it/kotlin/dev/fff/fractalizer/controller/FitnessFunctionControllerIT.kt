@@ -1,6 +1,5 @@
-package dev.fff.fractalizer
+package dev.fff.fractalizer.controller
 
-import dev.fff.fractalizer.controller.FitnessFunctionController
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.Assert
