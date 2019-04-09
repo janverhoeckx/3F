@@ -4,6 +4,6 @@ import {HttpClient} from "./http/HttpClient";
 
 let client = new HttpClient();
 
-client.get('/fitnessfunction').then((data) => {
+client.get('http://localhost:8080/fitnessfunction').then((data) => {
     new D3Fractalizer(JSON.parse(data));
 });
