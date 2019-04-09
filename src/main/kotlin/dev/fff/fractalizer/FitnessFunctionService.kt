@@ -13,7 +13,9 @@ class FitnessFunctionService(private val fitnessFunctionHandlers: List<FitnessFu
 
     fun evaluateFitnessFunction(fitnessFunction: FitnessFunction): FitnessFunction {
         fitnessFunction.children = fitnessFunction.children?.map { evaluateFitnessFunction(it) }
-        if(fitnessFunction.type != null) {
+        if (fitnessFunction.children?.any { !it.okay } == true) {
+            fitnessFunction.okay = false
+        } else if (fitnessFunction.type != null) {
             fitnessFunction.okay = handlerMap.getValue(fitnessFunction.type).checkFitnessFunction(fitnessFunction)
         }
         return fitnessFunction

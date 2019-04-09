@@ -28,8 +28,8 @@ class FitnessFunctionControllerIT {
     fun testGetFitnessFunctionResultConnectExceptionReturnsFalse() {
         val result = fitnessFunctionController.getFitnessFunctionResult()
 
-        Assert.assertTrue(result.okay)
-        Assert.assertTrue(result.children!![0].okay)
+        Assert.assertFalse(result.okay)
+        Assert.assertFalse(result.children!![0].okay)
         Assert.assertTrue(result.children!![1].okay)
         Assert.assertFalse(result.children!![0].children!![0].okay)
     }
