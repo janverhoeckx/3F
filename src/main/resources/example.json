@@ -1,7 +1,7 @@
 {
   "name": "Example webapp",
   "description": "Architecture okay?",
-  "okay": false,
+  "okay": true,
   "children": [
     {
       "name": "Functionality",
@@ -22,6 +22,28 @@
       ]
     },
     {
+      "name": "Systems up",
+      "okay": true,
+      "children": [
+        {
+          "name": "Fractalizer",
+          "okay": true,
+          "type": "HttpCheck",
+          "properties": {
+            "url": "http://localhost:8080/actuator/health"
+          }
+        },
+        {
+          "name": "Fake App",
+          "okay": true,
+          "type": "HttpCheck",
+          "properties": {
+            "url": "http://localhost:8085"
+          }
+        }
+      ]
+    },
+    {
       "name": "Usability (UX)",
       "okay": true
     },
@@ -31,7 +53,7 @@
     },
     {
       "name": "Performance",
-      "okay": false
+      "okay": true
     },
     {
       "name": "Supportability ",
@@ -51,7 +73,7 @@
                 },
                 {
                   "name": "Service 2",
-                  "okay": true
+                  "okay": false
                 },
                 {
                   "name": "Service 3",

@@ -6,7 +6,11 @@
     "build": "webpack --mode production"
   },
   "dependencies": {
-    "d3": "3.5.17"
+    "d3": "3.5.17",
+    "net": "^1.0.2",
+    "request": "^2.88.0",
+    "request-promise-native": "^1.0.7",
+    "tls": "0.0.1"
   },
   "devDependencies": {
     "copy-webpack-plugin": "^5.0.1",

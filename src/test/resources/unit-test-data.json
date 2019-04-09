@@ -2,20 +2,28 @@
   "name": "Example webapp",
   "description": "Architecture okay?",
   "okay": false,
+  "type": "test",
   "children": [
     {
       "name": "Functionality",
       "okay": true,
+      "type": "test",
       "children": [
         {
           "name": "Security",
-          "okay": true
+          "okay": true,
+          "type": "test"
         }
       ]
     },
     {
       "name": "Usability (UX)",
-      "okay": true
+      "okay": true,
+      "type": "test",
+      "properties":  {
+        "testProperty": "testValue",
+        "testProperty2": "testValue2"
+      }
     }
   ]
 }

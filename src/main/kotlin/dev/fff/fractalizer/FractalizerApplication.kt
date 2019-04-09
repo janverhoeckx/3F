@@ -1,10 +1,15 @@
 package dev.fff.fractalizer
 
-import dev.fff.fractalizer.dataloader.FitnessFunctionDataLoader
+import com.squareup.okhttp.OkHttpClient
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.context.annotation.Bean
+import org.springframework.context.annotation.Configuration
+import org.springframework.web.servlet.config.annotation.CorsRegistry
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
+import org.springframework.web.servlet.config.annotation.EnableWebMvc
+
+
 
 @SpringBootApplication
 class FractalizerApplication
@@ -13,10 +18,21 @@ fun main(args: Array<String>) {
     runApplication<FractalizerApplication>(*args)
 }
 
-@RestController
-class FitnessFunctionController(val fitnessFunctionDataLoader: FitnessFunctionDataLoader) {
+@Configuration
+class Configuration {
 
-    @GetMapping("/fitnessfunction")
-    fun getFitnessFunctionResult() = fitnessFunctionDataLoader.loadFitnessFunctions()
+    @Bean
+    fun getOkHttpClient(): OkHttpClient {
+        return OkHttpClient()
+    }
 
+}
+
+@Configuration
+@EnableWebMvc
+class WebConfig : WebMvcConfigurer {
+
+    override fun addCorsMappings(registry: CorsRegistry) {
+        registry.addMapping("/**")
+    }
 }
