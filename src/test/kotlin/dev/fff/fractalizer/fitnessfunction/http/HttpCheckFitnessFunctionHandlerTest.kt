@@ -1,12 +1,12 @@
-package dev.fff.fractalizer.handler
+package dev.fff.fractalizer.fitnessfunction.http
 
-import com.squareup.okhttp.*
-import dev.fff.fractalizer.model.FitnessFunction
-import org.junit.Test
-
+import dev.fff.fractalizer.fitnessfunction.FitnessFunction
+import okhttp3.*
 import org.junit.Assert.*
+import org.junit.Test
 import org.junit.runner.RunWith
-import org.mockito.*
+import org.mockito.InjectMocks
+import org.mockito.Mock
 import org.mockito.Mockito.*
 import org.mockito.junit.MockitoJUnitRunner
 import java.net.ConnectException
@@ -84,7 +84,7 @@ class HttpCheckFitnessFunctionHandlerTest {
     fun testCheckFitnessFunctionFailedToConnectReturnsFalse() {
         val fitnessFunction = FitnessFunction(name = "testName", okay = true, type = "HttpCheck", properties = mapOf(Pair("url", "http://test.nl")), description = "", children = null)
         val mockCall = mock(Call::class.java)
-        val responseBody = ResponseBody.create(MediaType.parse("application/json"), "test")
+        ResponseBody.create(MediaType.parse("application/json"), "test")
 
         `when`(mockOkHttpClient.newCall(any(Request::class.java))).thenReturn(mockCall)
         doThrow(ConnectException()).`when`(mockCall).execute()

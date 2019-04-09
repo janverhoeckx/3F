@@ -1,4 +1,4 @@
-package dev.fff.fractalizer.model
+package dev.fff.fractalizer.fitnessfunction
 
 import com.fasterxml.jackson.annotation.JsonInclude
 

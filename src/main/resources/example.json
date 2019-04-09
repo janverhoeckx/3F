@@ -69,7 +69,16 @@
               "children": [
                 {
                   "name": "Service 1",
-                  "okay": true
+                  "okay": true,
+                  "type": "InfluxDBCheck",
+                  "properties": {
+                    "url": "http://172.25.244.78:8086",
+                    "username": "secret:service1-influx-username",
+                    "password": "secret:service1-influx-password",
+                    "database": "test.influxdb",
+                    "query": "SELECT last(\"build_time\") FROM \"jenkins_data\" WHERE (\"build_result\" = 'SUCCESS')",
+                    "resultExpression": "< 30"
+                  }
                 },
                 {
                   "name": "Service 2",

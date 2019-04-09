@@ -1,6 +1,6 @@
-package dev.fff.fractalizer.handler
+package dev.fff.fractalizer
 
-import dev.fff.fractalizer.model.FitnessFunction
+import dev.fff.fractalizer.fitnessfunction.FitnessFunction
 
 interface FitnessFunctionHandler {
     fun checkFitnessFunction(fitnessFunction: FitnessFunction): Boolean
