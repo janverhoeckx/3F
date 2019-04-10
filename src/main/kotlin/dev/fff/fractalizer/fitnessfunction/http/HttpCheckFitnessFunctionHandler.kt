@@ -33,8 +33,7 @@ class HttpCheckFitnessFunctionHandler(val httpClient: OkHttpClient) : FitnessFun
             if (!response.isSuccessful) {
                 return false
             }
-            //FIXME !! added for compile error
-            return fitnessFunction.properties["expectedResult"]?.contains(response.body()!!.string()) ?: true
+            return fitnessFunction.properties["expectedResult"]?.contains((response.body()?.string() ?: "")) ?: true
         } catch (e: Throwable) {
             LOGGER.info("Failed to connect to ${fitnessFunction.properties["url"]} for fitness function ${fitnessFunction.name}")
             return false

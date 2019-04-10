@@ -84,7 +84,6 @@ class HttpCheckFitnessFunctionHandlerTest {
     fun testCheckFitnessFunctionFailedToConnectReturnsFalse() {
         val fitnessFunction = FitnessFunction(name = "testName", okay = true, type = "HttpCheck", properties = mapOf(Pair("url", "http://test.nl")), description = "", children = null)
         val mockCall = mock(Call::class.java)
-        ResponseBody.create(MediaType.parse("application/json"), "test")
 
         `when`(mockOkHttpClient.newCall(any(Request::class.java))).thenReturn(mockCall)
         doThrow(ConnectException()).`when`(mockCall).execute()
