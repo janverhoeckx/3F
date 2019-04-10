@@ -77,7 +77,7 @@
                     "password": "secret:service1-influx-password",
                     "database": "test.influxdb",
                     "query": "SELECT last(\"build_time\") FROM \"jenkins_data\" WHERE (\"build_result\" = 'SUCCESS')",
-                    "resultExpression": "< 30"
+                    "expression": "< 30"
                   }
                 },
                 {
