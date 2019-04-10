@@ -1,7 +1,6 @@
 package dev.fff.fractalizer
 
-import dev.fff.fractalizer.handler.FitnessFunctionHandler
-import dev.fff.fractalizer.model.FitnessFunction
+import dev.fff.fractalizer.fitnessfunction.FitnessFunction
 import org.springframework.stereotype.Service
 
 @Service

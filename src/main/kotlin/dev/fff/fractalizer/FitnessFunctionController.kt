@@ -1,9 +1,9 @@
-package dev.fff.fractalizer.controller
+package dev.fff.fractalizer
 
-import dev.fff.fractalizer.FitnessFunctionService
-import dev.fff.fractalizer.dataloader.FitnessFunctionDataLoader
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RestController
+
+//FIXME everything should be renamed to Fractalizer inclusing strings... accept for the fitnessfunction itself
 
 @RestController
 class FitnessFunctionController(val fitnessFunctionDataLoader: FitnessFunctionDataLoader, val fitnessFunctionService: FitnessFunctionService) {

@@ -1,6 +1,6 @@
-package dev.fff.fractalizer.dataloader
+package dev.fff.fractalizer
 
-import dev.fff.fractalizer.model.FitnessFunction
+import dev.fff.fractalizer.fitnessfunction.FitnessFunction
 
 interface FitnessFunctionDataLoader {
     fun loadFitnessFunctions(): FitnessFunction
