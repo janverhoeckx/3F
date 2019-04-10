@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/janverhoeckx/3F.svg?branch=master)](https://travis-ci.org/janverhoeckx/3F)
+
 # 3F
 Fitness Function Fractalizer
 
