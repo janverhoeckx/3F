@@ -1,7 +1,7 @@
 package dev.fff.fractalizer.fitnessfunction.influxdb
 
 import dev.fff.fractalizer.FitnessFunctionHandler
-import dev.fff.fractalizer.check.CompareLongExpressionCheck
+import dev.fff.fractalizer.check.CompareDoubleExpressionCheck
 import dev.fff.fractalizer.fitnessfunction.FitnessFunction
 import org.influxdb.dto.Query
 import org.influxdb.dto.QueryResult
@@ -43,12 +43,12 @@ class InfluxDBFitnessFunctionHandler(val influxDBFactoryAdapter: InfluxDBFactory
             LOGGER.warn("Expected fitness function ${fitnessFunction.name} to have a property 'database'")
             return false
         }
-        val query = fitnessFunction.properties["query"] ?: run {
+        var query = fitnessFunction.properties["query"] ?: run {
             LOGGER.warn("Expected fitness function ${fitnessFunction.name} to have a property 'query'")
             return false
         }
 
-        val validator = CompareLongExpressionCheck(fitnessFunction)
+        val validator = CompareDoubleExpressionCheck(fitnessFunction)
 
 
         try {
@@ -57,13 +57,13 @@ class InfluxDBFitnessFunctionHandler(val influxDBFactoryAdapter: InfluxDBFactory
 
             val queryResult: QueryResult = influxDB.query(Query(query, database))
 
-            queryResult.error ?: run {
+            queryResult.error?.let {
                 LOGGER.warn("Influx query result for ${fitnessFunction.name} is ${queryResult.error}")
                 return false
             }
             LOGGER.debug("Influx query result for ${fitnessFunction.name} : $queryResult")
 
-            return validator.compareWithExpression(queryResult.results.first().series.first().values.first().first().toString().toLong())
+            return validator.compareWithExpression(queryResult.results.first().series.first().values.first().last().toString().toDouble())
 
         } catch (e: Throwable) {
             LOGGER.info("Failed to connect to ${fitnessFunction.properties["url"]} influxdb for fitness function ${fitnessFunction.name}", e)

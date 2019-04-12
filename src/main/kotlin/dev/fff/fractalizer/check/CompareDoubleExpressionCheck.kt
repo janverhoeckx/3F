@@ -4,21 +4,21 @@ import dev.fff.fractalizer.fitnessfunction.FitnessFunction
 import dev.fff.fractalizer.fitnessfunction.FitnessFunctionConfigurationException
 import org.slf4j.LoggerFactory
 
-class CompareLongExpressionCheck(fitnessFunction: FitnessFunction)
+class CompareDoubleExpressionCheck(fitnessFunction: FitnessFunction)
 {
     companion object
     {
-        private val LOGGER = LoggerFactory.getLogger(CompareLongExpressionCheck::class.java)
+        private val LOGGER = LoggerFactory.getLogger(CompareDoubleExpressionCheck::class.java)
     }
 
     private val operator: String
-    private val compareValue: Long
+    private val compareValue: Double
 
     init
     {
         val expression = fitnessFunction.properties?.get("expression") ?: run {
             val reason = "Expected fitness function ${fitnessFunction.name} to have a property 'expression'"
-            CompareLongExpressionCheck.LOGGER.warn(reason)
+            CompareDoubleExpressionCheck.LOGGER.warn(reason)
             throw FitnessFunctionConfigurationException(reason)
         }
 
@@ -27,16 +27,16 @@ class CompareLongExpressionCheck(fitnessFunction: FitnessFunction)
         operator = expression.split(" ", limit = 2).firstOrNull().orEmpty()
         if (operator.isEmpty())
         {
-            CompareLongExpressionCheck.LOGGER.warn(reason)
+            CompareDoubleExpressionCheck.LOGGER.warn(reason)
             throw FitnessFunctionConfigurationException(reason)
         }
-        compareValue = expression.split(" ", limit = 2).lastOrNull()?.toLongOrNull() ?: run {
-            CompareLongExpressionCheck.LOGGER.warn(reason)
+        compareValue = expression.split(" ", limit = 2).lastOrNull()?.toDoubleOrNull() ?: run {
+            CompareDoubleExpressionCheck.LOGGER.warn(reason)
             throw FitnessFunctionConfigurationException(reason)
         }
     }
 
-    fun compareWithExpression(value: Long): Boolean
+    fun compareWithExpression(value: Double): Boolean
     {
         return when (operator)
         {
@@ -46,7 +46,7 @@ class CompareLongExpressionCheck(fitnessFunction: FitnessFunction)
             ">"  -> value > compareValue
             else ->
             {
-                CompareLongExpressionCheck.LOGGER.warn("Fitness function 'expression' operator is not correct: $operator")
+                CompareDoubleExpressionCheck.LOGGER.warn("Fitness function 'expression' operator is not correct: $operator")
                 false
             }
         }
