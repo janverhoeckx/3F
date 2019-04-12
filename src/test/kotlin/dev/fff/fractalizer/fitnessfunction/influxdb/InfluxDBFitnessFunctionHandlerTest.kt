@@ -1,7 +1,6 @@
 package dev.fff.fractalizer.fitnessfunction.influxdb
 
 import dev.fff.fractalizer.fitnessfunction.FitnessFunction
-import org.influxdb.InfluxDB
 import org.influxdb.InfluxDBException
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
@@ -18,13 +17,12 @@ class InfluxDBFitnessFunctionHandlerTest {
     @Mock
     private lateinit var mockInfluxDBFactoryAdapter: InfluxDBFactoryAdapter
 
-    @Mock
-    private lateinit var mockInfluxDB: InfluxDB
-
     @InjectMocks
     private lateinit var systemUnderTest: InfluxDBFitnessFunctionHandler
 
-    private val properties: HashMap<String, String> = hashMapOf("url" to "http://example.com", "username" to "user", "password" to "p4word", "database" to "test", "query" to "Select total from memory order by time desc")
+    private val properties: HashMap<String, String> = hashMapOf("url" to "http://example.com", "username" to "user", "password" to "p4word",
+                                                                "database" to "test", "query" to "Select total from memory order by time desc",
+                                                                "expression" to "> 42")
 
 
     @Test

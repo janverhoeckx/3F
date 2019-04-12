@@ -1,6 +1,7 @@
 package dev.fff.fractalizer.fitnessfunction.influxdb
 
 import dev.fff.fractalizer.FitnessFunctionHandler
+import dev.fff.fractalizer.check.CompareLongExpressionCheck
 import dev.fff.fractalizer.fitnessfunction.FitnessFunction
 import org.influxdb.dto.Query
 import org.influxdb.dto.QueryResult
@@ -23,14 +24,17 @@ class InfluxDBFitnessFunctionHandler(val influxDBFactoryAdapter: InfluxDBFactory
             return false
         }
 
+        //FIXME refactor connection and query logic including configuration checks conform Expressionvalidator
         val url = fitnessFunction.properties["url"] ?: run {
             LOGGER.warn("Expected fitness function ${fitnessFunction.name} to have a property 'url'")
+            //FIXME throw exceptions
             return false
         }
         val username = fitnessFunction.properties["username"] ?: run {
             LOGGER.warn("Expected fitness function ${fitnessFunction.name} to have a property 'username'")
             return false
         }
+        //FIXME support for encrypted password / secret
         val password = fitnessFunction.properties["password"] ?: run {
             LOGGER.warn("Expected fitness function ${fitnessFunction.name} to have a property 'password'")
             return false
@@ -44,10 +48,12 @@ class InfluxDBFitnessFunctionHandler(val influxDBFactoryAdapter: InfluxDBFactory
             return false
         }
 
+        val validator = CompareLongExpressionCheck(fitnessFunction)
+
 
         try {
 
-            val influxDB = influxDBFactoryAdapter.getInfluxDBConnection(url, username, password);
+            val influxDB = influxDBFactoryAdapter.getInfluxDBConnection(url, username, password)
 
             val queryResult: QueryResult = influxDB.query(Query(query, database))
 
@@ -55,30 +61,14 @@ class InfluxDBFitnessFunctionHandler(val influxDBFactoryAdapter: InfluxDBFactory
                 LOGGER.warn("Influx query result for ${fitnessFunction.name} is ${queryResult.error}")
                 return false
             }
+            LOGGER.debug("Influx query result for ${fitnessFunction.name} : $queryResult")
 
-            if (queryResult.results.size != 1) {
-                LOGGER.warn("Influx query result for ${fitnessFunction.name} is not a single value")
-                return false
-            }
-
-            LOGGER.debug("Influx query result for ${fitnessFunction.name} : ${queryResult.results[0]}")
-
-            //FIXME evaluate result eg:
-            /*
-            return when (resultExpression) {
-                    "==" -> 0
-                    "<" -> 1
-                    ">" -> 2
-                    else -> throw IllegalArgumentException("invalid resultExpression")
-                }
-             */
-
+            return validator.compareWithExpression(queryResult.results.first().series.first().values.first().first().toString().toLong())
 
         } catch (e: Throwable) {
             LOGGER.info("Failed to connect to ${fitnessFunction.properties["url"]} influxdb for fitness function ${fitnessFunction.name}", e)
             return false
         }
-        return false;
     }
 
     override fun getType(): String {
