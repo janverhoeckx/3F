@@ -2,9 +2,10 @@ package dev.fff.fractalizer.check
 
 import dev.fff.fractalizer.fitnessfunction.FitnessFunction
 import dev.fff.fractalizer.fitnessfunction.FitnessFunctionConfigurationException
+import dev.fff.fractalizer.fitnessfunction.getRequiredProperty
 import org.slf4j.LoggerFactory
 
-class CompareDoubleExpressionCheck(fitnessFunction: FitnessFunction)
+internal class CompareDoubleExpressionCheck(fitnessFunction: FitnessFunction)
 {
     companion object
     {
@@ -16,11 +17,7 @@ class CompareDoubleExpressionCheck(fitnessFunction: FitnessFunction)
 
     init
     {
-        val expression = fitnessFunction.properties?.get("expression") ?: run {
-            val reason = "Expected fitness function ${fitnessFunction.name} to have a property 'expression'"
-            CompareDoubleExpressionCheck.LOGGER.warn(reason)
-            throw FitnessFunctionConfigurationException(reason)
-        }
+        val expression = getRequiredProperty(fitnessFunction, "expression")
 
         val reason = "Error in fitness function ${fitnessFunction.name},  'expression' property should be like '< 10', '== 10', '!= 10', '> 10', etc."
 
