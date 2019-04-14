@@ -43,7 +43,7 @@ class InfluxDBFitnessFunctionHandler(val influxDBFactoryAdapter: InfluxDBFactory
             LOGGER.warn("Expected fitness function ${fitnessFunction.name} to have a property 'database'")
             return false
         }
-        var query = fitnessFunction.properties["query"] ?: run {
+        val query = fitnessFunction.properties["query"] ?: run {
             LOGGER.warn("Expected fitness function ${fitnessFunction.name} to have a property 'query'")
             return false
         }
