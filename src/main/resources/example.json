@@ -75,9 +75,9 @@
                     "url": "http://172.25.244.78:8086",
                     "username": "secret:service1-influx-username",
                     "password": "secret:service1-influx-password",
-                    "database": "test.influxdb",
-                    "query": "SELECT last(\"build_time\") FROM \"jenkins_data\" WHERE (\"build_result\" = 'SUCCESS')",
-                    "expression": "< 30"
+                    "database": "devops",
+                    "query": "SELECT last(\"build_time\") FROM \"jenkins_data\" WHERE (\"project_name\" = 'audit_service_client_pipeline')",
+                    "expression": "< 300000"
                   }
                 },
                 {

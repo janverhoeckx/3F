@@ -1,13 +1,25 @@
 package dev.fff.fractalizer.fitnessfunction.http
 
 import dev.fff.fractalizer.fitnessfunction.FitnessFunction
-import okhttp3.*
-import org.junit.Assert.*
+import dev.fff.fractalizer.fitnessfunction.FitnessFunctionConfigurationException
+import okhttp3.Call
+import okhttp3.MediaType
+import okhttp3.OkHttpClient
+import okhttp3.Protocol
+import okhttp3.Request
+import okhttp3.Response
+import okhttp3.ResponseBody
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertFalse
+import org.junit.Assert.assertTrue
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.InjectMocks
 import org.mockito.Mock
-import org.mockito.Mockito.*
+import org.mockito.Mockito.`when`
+import org.mockito.Mockito.any
+import org.mockito.Mockito.doThrow
+import org.mockito.Mockito.mock
 import org.mockito.junit.MockitoJUnitRunner
 import java.net.ConnectException
 
@@ -20,22 +32,11 @@ class HttpCheckFitnessFunctionHandlerTest {
     @InjectMocks
     private lateinit var systemUnderTest: HttpCheckFitnessFunctionHandler
 
-    @Test
-    fun testCheckFitnessFunctionMissingPropertiesReturnsFalse() {
-        val fitnessFunction = FitnessFunction(name = "testName", okay = true, type = "HttpCheck", properties = null, description = "", children = null)
-
-        val result = systemUnderTest.checkFitnessFunction(fitnessFunction)
-
-        assertFalse(result)
-    }
-
-    @Test
+    @Test(expected = FitnessFunctionConfigurationException::class)
     fun testCheckFitnessFunctionMissingUrlPropertyReturnsFalse() {
         val fitnessFunction = FitnessFunction(name = "testName", okay = true, type = "HttpCheck", properties = emptyMap(), description = "", children = null)
 
-        val result = systemUnderTest.checkFitnessFunction(fitnessFunction)
-
-        assertFalse(result)
+        systemUnderTest.checkFitnessFunction(fitnessFunction)
     }
 
     @Test

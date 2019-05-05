@@ -7,7 +7,7 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.ExpectedException
 
-class SimpleExpressionValidatorTest
+class CompareDoubleExpressionCheckTest
 {
 
     @Rule
@@ -23,70 +23,70 @@ class SimpleExpressionValidatorTest
     fun `Validate configuration - no properties`()
     {
         expectedException.expectMessage("Expected fitness function name to have a property 'expression'")
-        CompareLongExpressionCheck(createFitnessFunction(null))
+        CompareDoubleExpressionCheck(createFitnessFunction(null))
     }
 
     @Test
     fun `Validate configuration - empty properties`()
     {
         expectedException.expectMessage("Expected fitness function name to have a property 'expression'")
-        CompareLongExpressionCheck(createFitnessFunction(emptyMap()))
+        CompareDoubleExpressionCheck(createFitnessFunction(emptyMap()))
     }
 
     @Test
     fun `Validate configuration - empty expression property`()
     {
         expectedException.expectMessage("Error in fitness function name,  'expression' property should be like '< 10', '== 10', '!= 10', '> 10', etc")
-        CompareLongExpressionCheck(createFitnessFunction(mapOf("expression" to "")))
+        CompareDoubleExpressionCheck(createFitnessFunction(mapOf("expression" to "")))
     }
 
     @Test
     fun `Validate configuration - expression property contains to much whitespace`()
     {
         expectedException.expectMessage("Error in fitness function name,  'expression' property should be like '< 10', '== 10', '!= 10', '> 10', etc")
-        CompareLongExpressionCheck(createFitnessFunction(mapOf("expression" to "> 1 invalid")))
+        CompareDoubleExpressionCheck(createFitnessFunction(mapOf("expression" to "> 1 invalid")))
     }
 
     @Test
     fun `Validate configuration - expression property second part is not a number`()
     {
         expectedException.expectMessage("Error in fitness function name,  'expression' property should be like '< 10', '== 10', '!= 10', '> 10', etc")
-        CompareLongExpressionCheck(createFitnessFunction(mapOf("expression" to "> not_a_number")))
+        CompareDoubleExpressionCheck(createFitnessFunction(mapOf("expression" to "> not_a_number")))
     }
 
     @Test
     fun `Validate configuration - expression property first part is not a valid operator`()
     {
-        assertFalse(CompareLongExpressionCheck(createFitnessFunction(mapOf("expression" to "ooo 10"))).compareWithExpression(0))
+        assertFalse(CompareDoubleExpressionCheck(createFitnessFunction(mapOf("expression" to "ooo 10"))).compareWithExpression(0.0))
     }
 
     @Test
     fun `Validate equals`()
     {
-        assertFalse(CompareLongExpressionCheck(createFitnessFunction(mapOf("expression" to "== 3"))).compareWithExpression(10))
-        assertTrue(CompareLongExpressionCheck(createFitnessFunction(mapOf("expression" to "== 3"))).compareWithExpression(3))
+        assertFalse(CompareDoubleExpressionCheck(createFitnessFunction(mapOf("expression" to "== 3"))).compareWithExpression(10.0))
+        assertTrue(CompareDoubleExpressionCheck(createFitnessFunction(mapOf("expression" to "== 3"))).compareWithExpression(3.0))
     }
 
     @Test
     fun `Validate not equals`()
     {
-        assertFalse(CompareLongExpressionCheck(createFitnessFunction(mapOf("expression" to "!= 13"))).compareWithExpression(13))
-        assertTrue(CompareLongExpressionCheck(createFitnessFunction(mapOf("expression" to "!= 13"))).compareWithExpression(10))
+        assertFalse(CompareDoubleExpressionCheck(createFitnessFunction(mapOf("expression" to "!= 13"))).compareWithExpression(13.0))
+        assertTrue(CompareDoubleExpressionCheck(createFitnessFunction(mapOf("expression" to "!= 13"))).compareWithExpression(10.0))
     }
 
     @Test
     fun `Validate more then`()
     {
-        assertFalse(CompareLongExpressionCheck(createFitnessFunction(mapOf("expression" to "> 10"))).compareWithExpression(9))
-        assertFalse(CompareLongExpressionCheck(createFitnessFunction(mapOf("expression" to "> 10"))).compareWithExpression(10))
-        assertTrue(CompareLongExpressionCheck(createFitnessFunction(mapOf("expression" to "> 10"))).compareWithExpression(11))
+        assertFalse(CompareDoubleExpressionCheck(createFitnessFunction(mapOf("expression" to "> 10"))).compareWithExpression(9.0))
+        assertFalse(CompareDoubleExpressionCheck(createFitnessFunction(mapOf("expression" to "> 10"))).compareWithExpression(10.0))
+        assertTrue(CompareDoubleExpressionCheck(createFitnessFunction(mapOf("expression" to "> 10"))).compareWithExpression(11.0))
     }
 
     @Test
     fun `Validate less then`()
     {
-        assertFalse(CompareLongExpressionCheck(createFitnessFunction(mapOf("expression" to "< 42"))).compareWithExpression(47))
-        assertFalse(CompareLongExpressionCheck(createFitnessFunction(mapOf("expression" to "< 42"))).compareWithExpression(42))
-        assertTrue(CompareLongExpressionCheck(createFitnessFunction(mapOf("expression" to "< 42"))).compareWithExpression(-44))
+        assertFalse(CompareDoubleExpressionCheck(createFitnessFunction(mapOf("expression" to "< 42"))).compareWithExpression(47.0))
+        assertFalse(CompareDoubleExpressionCheck(createFitnessFunction(mapOf("expression" to "< 42"))).compareWithExpression(42.0))
+        assertTrue(CompareDoubleExpressionCheck(createFitnessFunction(mapOf("expression" to "< 42"))).compareWithExpression(-44.0))
     }
 }
