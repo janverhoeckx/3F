@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/janverhoeckx/3F.svg?branch=master)](https://travis-ci.org/janverhoeckx/3F)
+[![Build Status](https://travis-ci.org/janverhoeckx/3F.svg?branch=master)](https://travis-ci.org/janverhoeckx/3F) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=janverhoeckx_3F&metric=alert_status)](https://sonarcloud.io/dashboard?id=janverhoeckx_3F)
 
 # 3F
 Fitness Function Fractalizer
