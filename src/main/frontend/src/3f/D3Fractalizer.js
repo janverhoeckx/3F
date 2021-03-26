@@ -149,7 +149,6 @@ export class D3Fractalizer {
 
         function recurse(node, level) {
 
-            //FIXME when fitness function is defined call function for result
 
 
             if (node.children) node.children.forEach((theNode) => {

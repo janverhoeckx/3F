@@ -15,6 +15,7 @@ fun main(args: Array<String>) {
     runApplication<FractalizerApplication>(*args)
 }
 
+
 @Configuration
 @EnableWebMvc
 class WebConfig : WebMvcConfigurer {
